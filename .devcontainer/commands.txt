@@ -6,3 +6,4 @@ sudo raspi-config
 sudo apt-get -y install python3-pip
 pip3 install smbus2
 pip3 install django
+docker run --device /dev/i2c-0 --device /dev/i2c-1 myimage
