@@ -1,5 +1,6 @@
 docker run -it -v $HOME/.dockerpi/2019-09-26-raspbian-buster-lite.img:/sdcard/filesystem.img lukechilds/dockerpi
-docker run -it -p 127.0.0.1:5022:5022 -v $HOME/.dockerpi/2019-09-26-raspbian-buster-lite.img:/sdcard/filesystem.img lukechilds/dockerpi
+docker run -it -p 127.0.0.1:5022:5022 -p 127.0.0.1:8000:8000 -v $HOME/.dockerpi/2019-09-26-raspbian-buster-lite.img:/sdcard/filesystem.img lukechilds/dockerpi
+sshfs pi@localhost:/home/pi/Source/air_quality_monitoring /home/lukas/Source/air_quality_monitoring -p 5022 -o nonempty
 sudo apt-get update
 sudo raspi-config
 sudo apt-get -y install python3-pip
