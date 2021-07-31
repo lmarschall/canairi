@@ -2,4 +2,14 @@ version: "3.7"
 
 services:
     main:
-        build: './main'
+        build: "./main"
+        command: python -m main
+    server:
+        build: "./server"
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - ./server/:/usr/src/server/
+        ports:
+            - 8000:8000
+        # env_file:
+        #     - ./.env.dev

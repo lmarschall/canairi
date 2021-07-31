@@ -1,10 +1,15 @@
 FROM python:3.7
 
+# set work directory
+WORKDIR /usr/src/main
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 # copy software folders
-COPY ./ /main
-COPY /requirements.txt /main/requirements.txt
+COPY . .
+COPY ./requirements.txt .
 
 # install python requirements
-RUN pip install -r /main/requirements.txt
-
-CMD ["python", "-m", "main"]
+RUN pip install -r requirements.txt
