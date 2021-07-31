@@ -8,11 +8,24 @@ import { SensorsService } from 'src/app/sensors.service';
 })
 export class MainComponent implements OnInit {
 
+  interval_id: any
+
   constructor(private readonly sensors: SensorsService){}
 
   ngOnInit(): void {
 
     console.log("init")
+
+    this.interval_id = setInterval(() => {this.loop(); }, 5000);
+  }
+
+  ngOnDestroy() {
+    if (this.interval_id) {
+      clearInterval(this.interval_id);
+    }
+  }
+
+  public loop(): void {
     this.getSensorValues()
   }
 
