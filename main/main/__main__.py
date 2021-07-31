@@ -1,5 +1,4 @@
 import smbus2
-import numpy as np
 import time
 import requests
 import json
@@ -18,7 +17,7 @@ if __name__ == "__main__":
 
         print("Save")
         
-        median = np.median(interval_values)
+        median = sum(interval_values) / len(interval_values)
 
         url = "http://server:8000/measurements/post"
 
