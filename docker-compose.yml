@@ -6,6 +6,8 @@ services:
         command: python -m main
         depends_on: 
             - "server"
+        networks:
+            - mynet
     server:
         build: "./server"
         command: python manage.py runserver 0.0.0.0:8000
@@ -13,8 +15,13 @@ services:
             - ./server/:/usr/src/server/
         ports:
             - 8000:8000
+        networks:
+            - mynet
         # env_file:
         #     - ./.env.dev
     # client:
     #     build: "./client"
     #     command: ng serve
+
+networks:
+    mynet:
