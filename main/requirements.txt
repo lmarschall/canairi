@@ -1,1 +1,3 @@
 smbus2
+numpy
+requests
