@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SensorsService } from 'src/app/sensors.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { multi } from './data';
+// import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-main',
@@ -10,7 +13,26 @@ export class MainComponent implements OnInit {
 
   interval_id: any
 
-  constructor(private readonly sensors: SensorsService){}
+  multi: any[] = [];
+  view: [number, number] = [700, 300];
+
+  // options
+  legend: boolean = true;
+  showLabels: boolean = true;
+  animations: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  showYAxisLabel: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Year';
+  yAxisLabel: string = 'Population';
+  timeline: boolean = true;
+
+  colorScheme = {
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+  };
+
+  constructor(private readonly sensors: SensorsService){Object.assign(this, { multi })}
 
   ngOnInit(): void {
 
@@ -33,6 +55,18 @@ export class MainComponent implements OnInit {
 
     console.log("get sensor values")
     const values = await this.sensors.getSensorValues();
+  }
+
+  onSelect(data: any): void {
+    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  }
+
+  onActivate(data: any): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
+
+  onDeactivate(data: any): void {
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
 }

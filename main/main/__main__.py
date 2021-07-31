@@ -18,7 +18,7 @@ if __name__ == "__main__":
         
         median = np.median(interval_values)
 
-        url = "http://0.0.0.0:8000/measurements/post"
+        url = "http://server:8000/measurements/post"
 
         headers = {
             "Content-Type": "application/json"
@@ -30,8 +30,6 @@ if __name__ == "__main__":
         }
 
         r = requests.post(url = url, data = json.dumps(data), headers = headers)
-        rtext = r.text
-        json_string = json.loads(rtext)
 
         interval_values = []
 
