@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.7-slim
 
 # set work directory
 WORKDIR /usr/src/server
@@ -12,4 +12,4 @@ COPY . .
 COPY ./requirements.txt .
 
 # install python requirements
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt

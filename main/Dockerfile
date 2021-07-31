@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.7-slim
 
 # set work directory
 WORKDIR /usr/src/main
