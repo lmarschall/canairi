@@ -11,7 +11,9 @@ ENV PYTHONUNBUFFERED 1
 COPY . .
 COPY ./requirements.txt .
 
-RUN apt-get -y install make
+# install build packages
+RUN apt-get update
+RUN apt-get -y install make gcc
 
 # install python requirements
 RUN pip install -r requirements.txt
