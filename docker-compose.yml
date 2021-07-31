@@ -8,6 +8,8 @@ services:
             - "server"
         networks:
             - mynet
+        devices:
+            - "/dev/i2c-1:/dev/i2c-1"  
     server:
         build: "./server"
         command: python manage.py runserver 0.0.0.0:8000
