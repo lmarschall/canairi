@@ -1,23 +1,14 @@
-FROM ubuntu:20.04
+# Use official node image as the base image
+FROM node:latest
 
-# OS update, then clean up
-RUN apt-get -yq update && \
-    apt-get -yq upgrade && \
-    apt-get -yq --no-install-recommends install \
-        software-properties-common \
-        apt-transport-https \
-        ca-certificates \
-        aptitude \
-        wget \
-        unzip && \
-    apt-get clean && \
-    rm -rf /tmp/* /var/tmp/* /var/lib/apt/archive/* /var/lib/apt/lists/*
+# Set the working directory
+WORKDIR /usr/local/app
 
-# copy software folders
-COPY /client /client
-COPY /main /main
-COPY /server /server
+# Add the source code to app
+COPY ./ /usr/local/app/
 
-# install python requirements
-COPY /requirements.txt /main/requirements.txt
-RUN pip install -r /main/requirements.txt
+# Install all the dependencies
+RUN npm install
+
+# Generate the build of the application
+RUN npm run build
