@@ -40,21 +40,22 @@ if __name__ == "__main__":
 
         if sensor.get_sensor_data():
 
+            output = '{0:.2f} C,{1:.2f} hPa,{2:.2f} %RH'.format(
+            sensor.data.temperature,
+            sensor.data.pressure,
+            sensor.data.humidity)
+
+            if sensor.data.heat_stable:
+                print('{0},{1} Ohms'.format(
+                    output,
+                    sensor.data.gas_resistance))
+
+            else:
+                print(output)
+
             return sensor.data.temperature
         else:
             return 0
-            # output = '{0:.2f} C,{1:.2f} hPa,{2:.2f} %RH'.format(
-            #     sensor.data.temperature,
-            #     sensor.data.pressure,
-            #     sensor.data.humidity)
-
-            # if sensor.data.heat_stable:
-            #     print('{0},{1} Ohms'.format(
-            #         output,
-            #         sensor.data.gas_resistance))
-
-            # else:
-            #     print(output)
 
     def init():
         global sensor
