@@ -4,26 +4,19 @@ services:
     main:
         build: "./main"
         command: python -m main
-        depends_on: 
+        depends_on:
             - "server"
-        networks:
-            - mynet
         devices:
-            - "/dev/i2c-1:/dev/i2c-1"  
+            - "/dev/i2c-1:/dev/i2c-1"
     server:
         build: "./server"
         command: python manage.py runserver 0.0.0.0:8000
-        volumes:
-            - ./server/:/usr/src/server/
+        # volumes:
+        #     - ./server/:/usr/src/server/
         ports:
             - 8000:8000
-        networks:
-            - mynet
         # env_file:
         #     - ./.env.dev
     # client:
     #     build: "./client"
     #     command: ng serve
-
-networks:
-    mynet:
