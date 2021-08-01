@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0uxwol8" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.14.0">
+  <bpmn:process id="Process_0dqyrzu" isExecutable="true">
+    <bpmn:task id="Activity_0h5uyqz" name="Processor" />
+    <bpmn:dataStoreReference id="DataStoreReference_0qp0k3f" name="Database" />
+    <bpmn:dataObjectReference id="DataObjectReference_19arj1j" name="API" dataObjectRef="DataObject_1rvpuuo" />
+    <bpmn:dataObject id="DataObject_1rvpuuo" />
+    <bpmn:task id="Activity_0dxy1ao" name="BME 680">
+      <bpmn:property id="Property_0bw41pm" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1rlaynj">
+        <bpmn:sourceRef>DataObjectReference_19arj1j</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0bw41pm</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Activity_1g16zz6" name="Client">
+      <bpmn:property id="Property_143uaki" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1he0sy9">
+        <bpmn:sourceRef>DataObjectReference_19arj1j</bpmn:sourceRef>
+        <bpmn:targetRef>Property_143uaki</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:task>
+    <bpmn:group id="Group_16gn5tx" categoryValueRef="CategoryValue_0bt15ds" />
+  </bpmn:process>
+  <bpmn:category id="Category_0c6t8u0">
+    <bpmn:categoryValue id="CategoryValue_0bt15ds" value="Raspberry Pi Zero W" />
+  </bpmn:category>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0dqyrzu">
+      <bpmndi:BPMNShape id="Activity_0h5uyqz_di" bpmnElement="Activity_0h5uyqz">
+        <dc:Bounds x="260" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_19arj1j_di" bpmnElement="DataObjectReference_19arj1j">
+        <dc:Bounds x="382" y="305" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="391" y="281" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1g16zz6_di" bpmnElement="Activity_1g16zz6">
+        <dc:Bounds x="350" y="450" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dxy1ao_di" bpmnElement="Activity_0dxy1ao">
+        <dc:Bounds x="549" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0qp0k3f_di" bpmnElement="DataStoreReference_0qp0k3f">
+        <dc:Bounds x="235" y="305" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="236" y="281" width="47" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1he0sy9_di" bpmnElement="DataInputAssociation_1he0sy9">
+        <di:waypoint x="400" y="355" />
+        <di:waypoint x="400" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1rlaynj_di" bpmnElement="DataInputAssociation_1rlaynj">
+        <di:waypoint x="418" y="330" />
+        <di:waypoint x="549" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_16gn5tx_di" bpmnElement="Group_16gn5tx">
+        <dc:Bounds x="160" y="90" width="300" height="300" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="278" y="97" width="64" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
