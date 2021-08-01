@@ -3,4 +3,4 @@
 software running in loop on raspberry pi0w to interface the sensor and
 send the sensor data to server
 
-![Flow Diagram](https://github.com/lmarschall/canairo/blob/main/main/flow_diagram.png)
+![Flow Diagram](https://github.com/lmarschall/canair/blob/main/main/flow_diagram.png)
