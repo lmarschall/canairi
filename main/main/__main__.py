@@ -38,11 +38,9 @@ if __name__ == "__main__":
     def pull():
         global sensor
 
-        if sensor:
+        if sensor.get_sensor_data():
 
-            if sensor.get_sensor_data():
-
-                return sensor.data.temperature
+            return sensor.data.temperature
         else:
             return 0
             # output = '{0:.2f} C,{1:.2f} hPa,{2:.2f} %RH'.format(
@@ -112,35 +110,24 @@ if __name__ == "__main__":
 
         return True
 
-    # main loop
-    while True:
+    success = init()
 
-        value = pull()
-        interval_values.append(value)
+    if success:
 
-        time.sleep(1)
-        seconds += 1
+        print("Init success, start main loop")
 
-        if(seconds >= 5):
-            save()
-            seconds = 0
+        # main loop
+        while True:
 
-    # if success:
+            value = pull()
+            interval_values.append(value)
 
-    #     print("Init success, start main loop")
+            time.sleep(1)
+            seconds += 1
 
-    #     # main loop
-    #     while True:
+            if(seconds >= 5):
+                save()
+                seconds = 0
 
-    #         value = pull()
-    #         interval_values.append(value)
-
-    #         time.sleep(1)
-    #         seconds += 1
-
-    #         if(seconds >= 5):
-    #             save()
-    #             seconds = 0
-
-    # else:
-    #     print("Init fail, stop program")
+    else:
+        print("Init fail, stop program")
