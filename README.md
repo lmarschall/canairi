@@ -1,8 +1,8 @@
-# air_quality_monitoring
+# Canairi - Air Quaility Monitoring
 
 Project utilizing the Raspberry PI Zero W to retrieve sensor data from
 BME680 and calculate an air quality index to retrieve information about
-the pollution of indoor rooms.
+the pollution of indoor rooms. All set up in a dockerized environment.
 
 ---
 
@@ -46,7 +46,7 @@ touch ssh
 
 ---
 
-## Install dependencies on PI0W
+## Install Dependencies on PI0W
 
 ```bash
 
