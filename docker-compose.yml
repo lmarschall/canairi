@@ -17,6 +17,7 @@ services:
             - server
         devices:
             - "/dev/i2c-1:/dev/i2c-1"
+        restart: on-failure
     # client:
     #     build: "./client"
     #     command: ng serve
