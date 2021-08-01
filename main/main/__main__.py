@@ -19,6 +19,9 @@ if __name__ == "__main__":
         
         median = sum(interval_values) / len(interval_values)
 
+        print("Median")
+        print(median)
+
         url = "http://server:8000/measurements/post"
 
         headers = {
