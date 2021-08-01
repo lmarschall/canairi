@@ -14,7 +14,7 @@ services:
         build: "./main"
         command: python -m main
         depends_on:
-            - "server"
+            - server
         devices:
             - "/dev/i2c-1:/dev/i2c-1"
     # client:
