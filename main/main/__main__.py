@@ -19,9 +19,6 @@ if __name__ == "__main__":
         
         median = sum(interval_values) / len(interval_values)
 
-        print("Median")
-        print(median)
-
         url = "http://server:8000/measurements/post"
 
         headers = {
@@ -33,7 +30,10 @@ if __name__ == "__main__":
             "median": median
         }
 
-        r = requests.post(url = url, data = json.dumps(data), headers = headers)
+        try:
+            requests.post(url = url, data = json.dumps(data), headers = headers)
+        except:
+            print("Post Request failed!")
 
         interval_values = []
 
@@ -57,8 +57,9 @@ if __name__ == "__main__":
                 print(output)
 
             return sensor.data.temperature
+
         else:
-            return 0
+            return -255
 
     def init():
         global sensor
