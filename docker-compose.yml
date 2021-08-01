@@ -1,13 +1,6 @@
 version: "3.7"
 
 services:
-    main:
-        build: "./main"
-        command: python -m main
-        depends_on:
-            - "server"
-        devices:
-            - "/dev/i2c-1:/dev/i2c-1"
     server:
         build: "./server"
         command: python manage.py runserver 0.0.0.0:8000
@@ -17,6 +10,13 @@ services:
             - 8000:8000
         # env_file:
         #     - ./.env.dev
+    main:
+        build: "./main"
+        command: python -m main
+        depends_on:
+            - "server"
+        devices:
+            - "/dev/i2c-1:/dev/i2c-1"
     # client:
     #     build: "./client"
     #     command: ng serve
