@@ -7,3 +7,27 @@ sudo apt-get -y install python3-pip
 pip3 install smbus2
 pip3 install django
 docker run --device /dev/i2c-0 --device /dev/i2c-1 myimage
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install git
+curl -sSL https://get.docker.com | sh
+sudo usermod -aG docker pi
+sudo apt-get install python3-pip
+sudo pip3 install docker-compose
+sudo systemctl enable docker
+sudo reboot
+
+gpg: WARNING: unsafe ownership on homedir '/home/pi/.gnupg'
+
+
+touch wpa_supplicant.conf
+country=DE
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+  ssid="NETWORK_NAME"
+  psk="NETWORK_PASSWORD"
+  key_mgmt=WPA-PSK
+}
+touch ssh
