@@ -6,6 +6,10 @@ the pollution of indoor rooms. All set up in a dockerized environment.
 
 ---
 
+## Setup
+
+![Setup](https://github.com/lmarschall/canairi/blob/main/setup.png)
+
 ## Prerequisite
 
 * Raspberry Pi Zero W
@@ -75,8 +79,8 @@ sudo reboot
 
 ## Setup Software
 ```bash
-git clone https://github.com/lmarschall/air_quality_monitoring.git
-cd ~/air_quality_monitoring
+git clone https://github.com/lmarschall/canairi.git
+cd ~/canairi
 docker-compose build
 docker-compose up
 ```
