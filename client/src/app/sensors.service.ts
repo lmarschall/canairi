@@ -34,7 +34,7 @@ export class SensorsService {
 
   private async requestSensorValues(): Promise<JSON> {
 
-    const url: string = 'http://0.0.0.0:8000/measurements/get'
+    const url: string = 'http://192.168.2.118:8000/measurements/get'
 
     return await this.http.get<JSON>(url).toPromise()
   }
