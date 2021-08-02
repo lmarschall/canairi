@@ -1,7 +1,7 @@
 import time
 
-from sensor import Sensor
-from request import Request
+from .sensor import Sensor
+from .request import Request
 
 if __name__ == "__main__":
     
