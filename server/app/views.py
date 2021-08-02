@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from .models import Measurement
 
 import datetime
+from django.utils.timezone import get_current_timezone
 
 @api_view(["GET"])
 def get_measurements(request):
@@ -36,7 +37,7 @@ def post_measurements(request):
 
     # try to extract request data
     try:
-        timestamp = datetime.datetime.now()
+        timestamp = datetime.datetime.now(tz=get_current_timezone())
         temperature = request.data["temperature"]
         pressure = request.data["pressure"]
         humidity = request.data["humidity"]
