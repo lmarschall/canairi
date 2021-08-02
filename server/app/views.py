@@ -43,18 +43,31 @@ def post_measurements(request):
 
     # try to extract request data
     try:
-        median = request.data["median"]
-    except:
-        median = -255
+        timestamp = datetime.datetime.now()
+        temperature = request.data["temperature"]
+        pressure = request.data["pressure"]
+        humidity = request.data["humidity"]
+        gas_resistance = request.data["gas_resistance"]
+        air_quality = request.data["air_quality"]
 
-    # create timestamp for values
-    timestamp = datetime.datetime.now()
-    print(timestamp)
-    print(median)
-
-    # save value to database if valid
-    if median is not -255:
-        m = Measurement(time=timestamp, value=median)
+        # create timestamp for values
+        m = Measurement(
+            time=timestamp,
+            temperature=temperature,
+            pressure=pressure,
+            humidity=humidity,
+            gas_resistance=gas_resistance,
+            air_quality=air_quality)
         m.save()
+
+        print('{0:.2f} C,{1:.2f} hPa,{2:.2f} %RH, {3} Ohms, {4} Air Quality'.format(
+            temperature,
+            pressure,
+            humidity,
+            gas_resistance,
+            air_quality))
+
+    except:
+        pass
 
     return Response()
