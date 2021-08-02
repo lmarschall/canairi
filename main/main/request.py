@@ -6,7 +6,7 @@ class Request:
         pass
 
     # save values to database
-    def save(values):
+    def save(self, values):
         global interval_values
 
         print("Save")
