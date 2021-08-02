@@ -9,7 +9,7 @@ services:
         ports:
             - 8000:8000
         env_file:
-            - ./server/.env.dev
+            - ./.env.dev
     main:
         build: "./main"
         command: python -m main
