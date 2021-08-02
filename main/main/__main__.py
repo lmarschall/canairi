@@ -41,9 +41,11 @@ if __name__ == "__main__":
             sensor.pull()
 
             # wait till one second passed
-            time.sleep(1-(time.time()-start))
+            sleep = 2-(time.time()-start)
+            if sleep > 0:
+                time.sleep(sleep)
 
-            seconds += 1
+            seconds += 2
 
     else:
         print("Init fail, stop program")
