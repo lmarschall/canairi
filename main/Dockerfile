@@ -8,8 +8,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install build packages
-# RUN apt-get update
-# RUN apt-get -y install make gcc
+RUN apt-get update
+RUN apt-get -y install make gcc
 
 # install python requirements
 COPY ./requirements.txt .
