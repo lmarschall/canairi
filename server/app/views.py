@@ -32,7 +32,7 @@ def get_measurements(request):
     measurements = Measurement.objects.all()
 
     # parse the filtered rooms to json
-    json_measurements = measurements.values('id', 'time', 'value')
+    json_measurements = measurements.values("id", "time", "temperature", "pressure", "humidity", "gas_resistance", "air_quality")
 
     return Response(json_measurements)
 
