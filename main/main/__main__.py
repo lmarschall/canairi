@@ -1,5 +1,5 @@
 import time
-from gpiozero import RGBLED
+from gpiozero import LEDBoard
 
 from .sensor import Sensor
 from .request import Request
@@ -12,7 +12,7 @@ if __name__ == "__main__":
     interval = 60
     sensor = Sensor()
     request = Request()
-    led = RGBLED(red=26, green=13, blue=19)
+    leds = LEDBoard(26, 19, 13)
 
     # init sensor
     success = sensor.init()
@@ -44,13 +44,13 @@ if __name__ == "__main__":
 
                 # check air quality thresholds
                 if(sensor.air_quality <= 50):
-                    led.color = (0, 1, 0)  # green
+                    leds.value = (0, 0, 1)  # green
                 elif(sensor.air_quality <= 150):
-                    led.color = (0, 0, 1)  # yellow
+                    leds.value = (0, 1, 0)  # yellow
                 else:
-                    led.color = (1, 0, 0)  # red
+                    leds.value = (1, 0, 0)  # red
             else:
-                led.color = (0, 0, 0)  # blank    
+                leds.blink()  # blink till burn in complete    
             
             # pull values from sensor
             sensor.pull()
