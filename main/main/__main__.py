@@ -14,6 +14,7 @@ if __name__ == "__main__":
     request = Request()
     leds = LEDBoard(26, 19, 13)
     leds.value = (0, 0, 0)
+    new_led_value = (0, 0, 0)
     leds_on = False
 
     # init sensor
@@ -46,19 +47,23 @@ if __name__ == "__main__":
 
                 # check air quality thresholds
                 if(sensor.air_quality <= 50):
-                    leds.value = (0, 0, 1)  # green
+                    new_led_value = (0, 0, 1)  # green
                 elif(sensor.air_quality <= 150):
-                    leds.value = (0, 1, 0)  # yellow
+                    new_led_value = (0, 1, 0)  # yellow
                 else:
-                    leds.value = (1, 0, 0)  # red
+                    new_led_value = (1, 0, 0)  # red
             else:
                 # switch till burn in complete 
                 if leds_on:
-                    leds.value = (0, 0, 0)
+                    new_led_value = (0, 0, 0)
                     leds_on = False
                 else:
-                    leds.value = (1, 1, 1)
+                    new_led_value = (1, 1, 1)
                     leds_on = True
+
+            # if needed change led values
+            if leds.value != new_led_value:
+                leds.value = new_led_value
             
             # pull values from sensor
             sensor.pull()

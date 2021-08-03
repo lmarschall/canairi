@@ -52,7 +52,7 @@ class Sensor:
             else:
                 gas_score = 100 - (self.hum_weighting * 100)
 
-            # Calculate air_quality_score.
+            # Calculate air quality score.
             self.air_quality = hum_score + gas_score
 
         else:
