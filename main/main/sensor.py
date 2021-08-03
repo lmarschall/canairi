@@ -15,6 +15,7 @@ class Sensor:
         self.pre_values = []
         self.hum_values = []
         self.gas_values = []
+        self.air_quality = -1
 
     # get mean values of sensor
     def get(self):
@@ -52,11 +53,11 @@ class Sensor:
                 gas_score = 100 - (self.hum_weighting * 100)
 
             # Calculate air_quality_score.
-            air_quality = hum_score + gas_score
+            self.air_quality = hum_score + gas_score
 
         else:
             mean_gas = -1
-            air_quality = -1
+            self.air_quality = -1
 
         # reset data
         self.tem_values = []
@@ -69,7 +70,7 @@ class Sensor:
             mean_pre,
             mean_hum,
             mean_gas,
-            air_quality
+            self.air_quality
         ]
 
     # pull values from bme 680
