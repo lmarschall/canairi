@@ -13,6 +13,7 @@ if __name__ == "__main__":
     sensor = Sensor()
     request = Request()
     leds = LEDBoard(26, 19, 13)
+    leds.value = (0, 0, 0)
 
     # init sensor
     success = sensor.init()
@@ -50,7 +51,7 @@ if __name__ == "__main__":
                 else:
                     leds.value = (1, 0, 0)  # red
             else:
-                leds.blink()  # blink till burn in complete    
+                leds.value = (1, 1, 1)  # all on till burn in complete 
             
             # pull values from sensor
             sensor.pull()
