@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SensorsService } from 'src/app/sensors.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { multi } from './data';
+import {FormGroup, FormControl} from '@angular/forms';
 // import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
@@ -10,6 +11,11 @@ import { multi } from './data';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
 
   interval_id: any
 
