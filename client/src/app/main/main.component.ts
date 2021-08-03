@@ -17,6 +17,11 @@ export class MainComponent implements OnInit {
     end: new FormControl()
   });
 
+  air_quality: number = 0
+  temperature: number = 0.0
+  humidity: number = 0.0
+
+
   interval_id: any
 
   multi: any[] = [];
@@ -61,6 +66,25 @@ export class MainComponent implements OnInit {
 
     console.log("get sensor values")
     const values = await this.sensors.getSensorValues();
+
+    interface Measurement {
+      id: number;
+      air_quality: number;
+      gas_resistance: number;
+      humidity: number;
+      pressure: number;
+      temperature: number;
+      time: string;
+    }
+
+    var measurements = <Measurement[]><unknown>values;
+
+    this.air_quality = measurements[0].air_quality
+    this.temperature = measurements[0].temperature
+    this.humidity = measurements[0].humidity
+    
+    // first_element = values
+    console.log(measurements);
   }
 
   onSelect(data: any): void {

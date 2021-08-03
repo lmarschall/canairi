@@ -8,12 +8,11 @@ export class SensorsService {
 
   constructor(private http: HttpClient) { }
 
-  public async getSensorValues(): Promise<string> {
+  public async getSensorValues(): Promise<JSON> {
 
     const result: JSON = await this.requestSensorValues();
 
-    console.log(result)
-    return "";
+    return result;
   }
 
   // private async requestUserToken(username: string, password: string): Promise<JSON> {
