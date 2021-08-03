@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     NgxChartsModule,
     FlexLayoutModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

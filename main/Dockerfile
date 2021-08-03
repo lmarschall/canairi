@@ -16,5 +16,7 @@ COPY ./requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+RUN export GPIOZERO_PIN_FACTORY=pigpio
+
 # copy software folders
 COPY . .

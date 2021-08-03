@@ -1,3 +1,4 @@
 requests
 bme680
 gpiozero
+pigpio
