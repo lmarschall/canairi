@@ -57,7 +57,7 @@ if __name__ == "__main__":
                     leds.value = (0, 0, 0)
                     leds_on = False
                 else:
-                    leds.value = (0, 0, 0)
+                    leds.value = (1, 1, 1)
                     leds_on = True
             
             # pull values from sensor
