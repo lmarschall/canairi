@@ -42,22 +42,29 @@ if __name__ == "__main__":
             if(sensor.start_time + sensor.burn_in_time < start and sensor.burned_in is False):
                 sensor.burn()
 
+            print(sensor.air_quality)
+
             # check air quality and set leds
             if(sensor.air_quality > 0):
 
                 # check air quality thresholds
                 if(sensor.air_quality <= 50):
+                    print("Green")
                     new_led_value = (0, 0, 1)  # green
                 elif(sensor.air_quality <= 150):
+                    print("Yellow")
                     new_led_value = (0, 1, 0)  # yellow
                 else:
+                    print("Red")
                     new_led_value = (1, 0, 0)  # red
             else:
                 # switch till burn in complete 
                 if leds_on:
+                    print("OFF")
                     new_led_value = (0, 0, 0)
                     leds_on = False
                 else:
+                    print("OFF")
                     new_led_value = (1, 1, 1)
                     leds_on = True
 
