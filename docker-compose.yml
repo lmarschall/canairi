@@ -21,6 +21,7 @@ services:
             - server
         devices:
             - "/dev/i2c-1:/dev/i2c-1"
+            - "dev/gpiomem:/dev/gpiomem"
 
 volumes:
     sqllite_data:
