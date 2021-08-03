@@ -43,6 +43,9 @@ if __name__ == "__main__":
 
             print(sensor.air_quality)
 
+            # reset leds
+            leds.off()
+
             # check air quality and set leds
             if(sensor.air_quality > 0):
 
@@ -63,7 +66,7 @@ if __name__ == "__main__":
                     leds.value = (0, 0, 0)
                     leds_on = False
                 else:
-                    print("OFF")
+                    print("ON")
                     leds.value = (1, 1, 1)
                     leds_on = True
             
