@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -35,13 +35,14 @@ export class SensorsService {
 
     const url: string = 'http://0.0.0.0:8000/measurements/get'
 
-    const data = new HttpParams()
-    .set('data', user_token)
+    // var options = new RequestOptions({
+    //   headers: new Headers({
+    //     Authorization: `Bearer ${authtoken}`
+    //   }),
 
-    // var data = {
-    //   'Token': user_token
-    // }
+    const header = new HttpHeaders()
+    .set('Authorization', user_token)
 
-    return await this.http.get<JSON>(url).toPromise()
+    return await this.http.get<JSON>(url, header = header).toPromise()
   }
 }
