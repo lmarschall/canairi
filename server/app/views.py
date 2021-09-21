@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import Measurement
+from .keycloak import KeycloakHandler
 
 import datetime
 from django.utils.timezone import get_current_timezone
@@ -12,6 +13,9 @@ from django.utils.timezone import get_current_timezone
 def get_measurements(request):
 
     # http://127.0.0.1:8000/api/rooms?size=1&check_in=08.08.2020&check_out=12.08.2020
+
+    KeycloakHandler.getAccessToken()
+    # KeycloakHandler.checkUserToken()
 
     try:
         # try to get the filter parameters from the request

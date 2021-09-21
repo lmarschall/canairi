@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SensorsService } from 'src/app/sensors.service';
+import { SensorsService } from 'src/app/services/sensors.service';
+import { KeycloakService } from 'src/app/services/keycloak.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { multi } from './data';
 import {FormGroup, FormControl} from '@angular/forms';
@@ -43,11 +44,13 @@ export class MainComponent implements OnInit {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  constructor(private readonly sensors: SensorsService){Object.assign(this, { multi })}
+  constructor(private readonly sensors: SensorsService, private readonly keycloak: KeycloakService){Object.assign(this, { multi })}
 
   ngOnInit(): void {
 
     console.log("init")
+
+    this.keycloak.login("demodoc", "password");
 
     this.interval_id = setInterval(() => {this.loop(); }, 5000);
   }
@@ -65,7 +68,8 @@ export class MainComponent implements OnInit {
   public async getSensorValues() {
 
     console.log("get sensor values")
-    const values = await this.sensors.getSensorValues();
+    const user_token = await this.keycloak.getUserToken();
+    const values = await this.sensors.getSensorValues(user_token);
 
     interface Measurement {
       id: number;

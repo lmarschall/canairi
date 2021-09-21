@@ -14,14 +14,14 @@ services:
             - 8000:8000
         env_file:
             - ./.env.dev
-    main:
-        build: "./main"
-        command: python -m main
-        depends_on:
-            - server
-        devices:
-            - "/dev/i2c-1:/dev/i2c-1"
-            - "dev/gpiomem:/dev/gpiomem"
+    # main:
+    #     build: "./main"
+    #     command: python -m main
+    #     depends_on:
+    #         - server
+    #     devices:
+    #         - "/dev/i2c-1:/dev/i2c-1"
+    #         - "dev/gpiomem:/dev/gpiomem"
 
 volumes:
     sqllite_data:

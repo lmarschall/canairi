@@ -8,9 +8,9 @@ export class SensorsService {
 
   constructor(private http: HttpClient) { }
 
-  public async getSensorValues(): Promise<JSON> {
+  public async getSensorValues(user_token: string): Promise<JSON> {
 
-    const result: JSON = await this.requestSensorValues();
+    const result: JSON = await this.requestSensorValues(user_token);
 
     return result;
   }
@@ -31,9 +31,16 @@ export class SensorsService {
   //   return await this.http.post<JSON>(url, params, { headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).toPromise()
   // }
 
-  private async requestSensorValues(): Promise<JSON> {
+  private async requestSensorValues(user_token: string): Promise<JSON> {
 
-    const url: string = 'http://192.168.2.118:8000/measurements/get'
+    const url: string = 'http://0.0.0.0:8000/measurements/get'
+
+    const data = new HttpParams()
+    .set('data', user_token)
+
+    // var data = {
+    //   'Token': user_token
+    // }
 
     return await this.http.get<JSON>(url).toPromise()
   }

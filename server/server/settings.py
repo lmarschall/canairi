@@ -133,3 +133,10 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = os.environ.get("CORS_ALLOWED_ORIGINS").split(" ")
+
+ACCESS_TOKEN = ''
+LOGINSERVER_URL = 'test2.medcast.cloud'
+LOGINSERVER_PORT = '8443'
+LOGINSERVER_REALM = 'demo'
+LOGINSERVER_CLIENT_NAME = 'teledocweb'
+LOGINSERVER_CLIENT_SECRET = 'acfcc381-171b-4cf1-9a0d-780845669ac7'

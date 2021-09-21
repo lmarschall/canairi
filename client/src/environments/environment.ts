@@ -3,7 +3,19 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  keycloak: {
+
+    // Url
+    issuer: 'https://test2.medcast.cloud:8443',
+
+    // Realm
+    realm: 'demo',
+
+    // Client Id
+    clientId: 'pwa',
+  }
 };
 
 /*
