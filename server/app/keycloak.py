@@ -27,18 +27,17 @@ class KeycloakHandler(object):
                 "client_secret": settings.LOGINSERVER_CLIENT_SECRET
             }
 
-            r = requests.post(url = url, data = data, headers = headers)
-            rtext = r.text
-            json_string = json.loads(rtext)
-            # print(rtext)
+            try:
 
-            settings.ACCESS_TOKEN = json_string['access_token']
+                r = requests.post(url = url, data = data, headers = headers)
+                rtext = r.text
+                json_string = json.loads(rtext)
+                # print(rtext)
+                settings.ACCESS_TOKEN = json_string['access_token']
 
-            print(settings.ACCESS_TOKEN)
+            except:
 
-        
-        else:
-            return settings.ACCESS_TOKEN
+                pass
 
     # check access token of user request
     @staticmethod
@@ -77,4 +76,7 @@ class KeycloakHandler(object):
 
         else:
             KeycloakHandler.getAccessToken()
-            KeycloakHandler.checkUserToken(user_token)
+            if(settings.ACCESS_TOKEN != ""):
+                KeycloakHandler.checkUserToken(user_token)
+            else:
+                KeycloakHandler.interception_success = False
