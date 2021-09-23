@@ -14,8 +14,17 @@ def get_measurements(request):
 
     # http://127.0.0.1:8000/api/rooms?size=1&check_in=08.08.2020&check_out=12.08.2020
 
-    KeycloakHandler.getAccessToken()
-    # KeycloakHandler.checkUserToken()
+    print("Request")
+    # print(request.user)
+    # print(request.auth)
+    # print(request.data)
+    # print(request.META)
+
+    bearer_string = request.META['HTTP_AUTHORIZATION']
+    user_token = bearer_string.split(" ")[1]
+    # print(user_token)
+
+    KeycloakHandler.checkUserToken(user_token)
 
     try:
         # try to get the filter parameters from the request

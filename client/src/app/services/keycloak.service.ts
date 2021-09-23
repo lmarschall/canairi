@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -42,7 +42,12 @@ export class KeycloakService {
     try
     {
       // no access token defined, request new access token
-      const result: any = await this.requestUserToken(username, password);
+      const login_result: any = await this.requestUserToken(username, password);
+
+      // save access token and return
+      this.access_token = login_result["access_token"];
+
+      const result: any = await this.requestPermissionToken();
 
       console.log(result);
       
@@ -149,5 +154,24 @@ export class KeycloakService {
       .set('refresh_token', this.refresh_token)
 
     return this.http.post(url, params, { headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).toPromise();
+  }
+
+  private async requestPermissionToken() {
+
+    const realm = environment.keycloak.realm
+    const issuer = environment.keycloak.issuer
+    const url: string = issuer + '/auth/realms/' + realm + '/protocol/openid-connect/token'
+    const bearer: string = 'Bearer ' + this.access_token
+
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', bearer)
+
+    const params = new HttpParams()
+      .set('grant_type', 'urn:ietf:params:oauth:grant-type:uma-ticket')
+      .set('audience', "django-rest-api")
+      .set('permission', "Measurement#measurement:get")
+
+    return this.http.post(url, params, { headers: headers}).toPromise();
   }
 }

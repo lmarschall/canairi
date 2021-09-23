@@ -7,6 +7,8 @@ import json
 # handler for keycloak operations
 class KeycloakHandler(object):
 
+    interception_success = False
+
     # retrieve access token for server client
     @staticmethod
     def getAccessToken():
@@ -58,10 +60,21 @@ class KeycloakHandler(object):
                 "client_secret": settings.LOGINSERVER_CLIENT_SECRET
             }
 
-            r = requests.post(url = url, data = data, headers = headers)
-            rtext = r.text
-            json_string = json.loads(rtext)
-            print(rtext)
+            try:
+
+                r = requests.post(url = url, data = data, headers = headers)
+                rtext = r.text
+                json_string = json.loads(rtext)
+                print(rtext)
+
+                active = json_string['active']
+                print(bool(active))
+                print(json_string['authorization']['permissions'][0]['scopes'])
+                KeycloakHandler.interception_success = bool(active)
+
+            except:
+                KeycloakHandler.interception_success = False
 
         else:
-            print("NO ACCESS TOKEN")
+            KeycloakHandler.getAccessToken()
+            KeycloakHandler.checkUserToken(user_token)

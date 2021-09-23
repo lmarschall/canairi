@@ -40,9 +40,14 @@ export class SensorsService {
     //     Authorization: `Bearer ${authtoken}`
     //   }),
 
-    const header = new HttpHeaders()
-    .set('Authorization', user_token)
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', `Bearer ${user_token}`)
 
-    return await this.http.get<JSON>(url, header = header).toPromise()
+    // const options = {
+    //   headers: header,
+    // };
+
+    return await this.http.get<JSON>(url, {headers: headers}).toPromise()
   }
 }

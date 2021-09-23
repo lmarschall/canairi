@@ -50,7 +50,7 @@ export class MainComponent implements OnInit {
 
     console.log("init")
 
-    this.keycloak.login("demodoc", "password");
+    this.keycloak.login("djangoclient", "password");
 
     this.interval_id = setInterval(() => {this.loop(); }, 5000);
   }
@@ -68,8 +68,8 @@ export class MainComponent implements OnInit {
   public async getSensorValues() {
 
     console.log("get sensor values")
-    const user_token = await this.keycloak.getUserToken();
-    const values = await this.sensors.getSensorValues(user_token);
+    const request_token = await this.keycloak.getUserToken();
+    const values = await this.sensors.getSensorValues(request_token);
 
     interface Measurement {
       id: number;
