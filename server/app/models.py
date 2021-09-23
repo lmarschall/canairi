@@ -11,4 +11,4 @@ class Measurement(models.Model):
     class Meta:
         db_table = 'app_measurements'
         verbose_name = 'Measurement'
-        verbose_name_plural = 'Measurement'
+        verbose_name_plural = 'Measurements'
